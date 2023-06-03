@@ -1,5 +1,19 @@
+import hashlib
+import os
+import json
+import time
+
+
+
+def MD5(Name: str) -> str:
+    Name_utf8 = (Name + str(time.time())).encode("utf8")
+    m2 = hashlib.md5()
+    m2.update(Name_utf8)
+    # print(m2.hexdigest())
+    return m2.hexdigest()
+
 class Instance:
-    def __init__(self, InstanceUUID):
+    def __init__(self, InstanceUUID,InstanseName):
         self.MCJVM = None
         self.Information = ""
         self.MCWindowTitle = self.InstanceName
