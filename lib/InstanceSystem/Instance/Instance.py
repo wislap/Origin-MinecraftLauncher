@@ -13,7 +13,8 @@ def MD5(Name: str) -> str:
     return m2.hexdigest()
 
 class Instance:
-    def __init__(self, InstanceUUID,InstanseName):
+    def __init__(self,InstanseName):
+        self.InstanceUUID = MD5(InstanseName)
         self.MCJVM = None
         self.Information = ""
         self.MCWindowTitle = self.InstanceName
@@ -22,7 +23,6 @@ class Instance:
         self.RAMLimit = 4096
         self.InstanceAbsolutePath = None
         self.InstanceName = None
-        self.InstanceUUID = InstanceUUID
 
     @property
     def getInstanceUUID(self):
@@ -82,3 +82,17 @@ class Instance:
 
     def setMCJVM(self, MCJVM):
         self.MCJVM = MCJVM
+
+
+
+def InstanceRead(file):
+    InstanceData = open(file, "r")
+    InstanceData_dirt = json.loads(InstanceData.read())
+    InstanceData.close()
+    return InstanceData_dirt
+
+
+def InstanceWrite(file, InstanceObject):
+    InstanceData = open(file, "w")
+    InstanceData.write(json.dumps(InstanceObject))
+    InstanceData.close()
