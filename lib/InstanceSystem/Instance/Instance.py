@@ -4,7 +4,6 @@ import json
 import time
 
 
-
 def MD5(Name: str) -> str:
     Name_utf8 = (Name + str(time.time())).encode("utf8")
     m2 = hashlib.md5()
@@ -12,8 +11,9 @@ def MD5(Name: str) -> str:
     # print(m2.hexdigest())
     return m2.hexdigest()
 
+
 class Instance:
-    def __init__(self,InstanseName):
+    def __init__(self, InstanseName):
         self.InstanceUUID = MD5(InstanseName)
         self.MCJVM = None
         self.Information = ""
@@ -82,7 +82,6 @@ class Instance:
 
     def setMCJVM(self, MCJVM):
         self.MCJVM = MCJVM
-
 
 
 def InstanceRead(file):
